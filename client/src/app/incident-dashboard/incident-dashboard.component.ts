@@ -36,7 +36,7 @@ export class IncidentDashboardComponent implements OnInit {
     console.log(incident);
 
 
-      this.router.navigate(['/createInc'], { queryParams: { page: incident.id } });
+      this.router.navigate(['/editInc'], { queryParams: { page: incident.id } });
     
   
     }
