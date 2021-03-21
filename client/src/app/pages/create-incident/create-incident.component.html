@@ -110,8 +110,9 @@
                     [(ngModel)]="incident.resolution"
                     name="resolution" required>
                 </div>
+                
 
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-primary" type="submit"   (click)='addIncident(incident)'>
                     <i class="fas fa-edit"></i> Submit</button>
                 
                     <a href="/incidents" class="btn btn-warning">

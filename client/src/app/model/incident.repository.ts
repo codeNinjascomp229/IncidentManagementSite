@@ -21,6 +21,9 @@ export class IncidentRepository {
   getIncident(id: number): Incidents{
     return this.incidents.find(i => i.id === id);
   }
+  addIncident(incident: Incidents) {
+    this.incidents.concat(incident);
+  }
 
   getAssignies(): string[] {
     return this.assignies;

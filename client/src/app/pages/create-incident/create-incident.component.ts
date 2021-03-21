@@ -41,6 +41,18 @@ export class CreateIncidentComponent implements OnInit {
   console.log(this.incident.status);
 
   }
+
+  addIncident(incident: Incidents) {
+    this.incident = incident;
+    console.log(incident);
+    this.repository.addIncident(incident);
+
+
+
+      this.router.navigate(['/incidents'], { queryParams: { page: incident.id } });
+    
+  
+    }
   
   
 
