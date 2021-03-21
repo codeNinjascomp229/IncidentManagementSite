@@ -40,6 +40,16 @@ export class IncidentDashboardComponent implements OnInit {
     
   
     }
+    deleteIncident(incident: Incidents) {
+      this.incident = incident;
+      console.log(incident);
+      this.repository.deleteIncident(incident);
+  
+  
+        this.router.navigate(['/incidents'], { queryParams: { page: incident.id } });
+      
+    
+      }
 
   changeAssigne(newAssigne: string): string
   {

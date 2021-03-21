@@ -24,6 +24,11 @@ export class IncidentRepository {
   addIncident(incident: Incidents) {
     this.incidents.concat(incident);
   }
+  deleteIncident(incident: Incidents) {
+    console.log("delete");
+    const index: number = this.incidents.indexOf(incident);
+    this.incidents.splice(index, 1);
+  }
 
   getAssignies(): string[] {
     return this.assignies;
