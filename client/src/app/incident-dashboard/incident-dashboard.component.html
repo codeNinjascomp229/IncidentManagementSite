@@ -27,15 +27,16 @@
                 <h8>Assigne: {{incident.assigne}}</h8>
                 <h8>Customer: {{incident.customerInfo}}</h8>
                 <h8>Assigned Date: {{incident.date}}</h8>
-                <div>
-                    <button class="btn   btn-success  col-2 float-right"
+                <div class ="p-1" >
+                    <button class="btn  badge badge-pill btn-success mr-2  col-2 "
                         (click)='setIncident(incident)'> Edit
                     </button>
-                    <button class="btn   btn-danger col-2 float-right" (click)='deleteIncident(incident)'> 
+                    <button class="btn  badge badge-pill btn-danger col-2 float-right" (click)='deleteIncident(incident)'> 
                         Delete
                     </button>
 
                 </div>
+                
                 <div class="card-text bg-dark p-1 text-light">{{incident.narration}}</div>
                 
                 
