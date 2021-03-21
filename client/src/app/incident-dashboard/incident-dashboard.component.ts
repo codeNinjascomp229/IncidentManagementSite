@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Incidents } from '../model/incident.model';
 import { IncidentRepository } from './../model/incident.repository';
-import { Router } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
+import { Router } from '@angular/router'; 
 @Component({
   selector: 'app-incident-dashboard',
   templateUrl: './incident-dashboard.component.html',
@@ -13,7 +13,8 @@ export class IncidentDashboardComponent implements OnInit {
   public selectedAssigne = null ;
   public  incidentsPerPage = 5;
   public selectedPage = 1;
-  constructor(private repository: IncidentRepository) { }
+  incident?: Incidents;
+  constructor(private repository: IncidentRepository,private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -29,6 +30,16 @@ export class IncidentDashboardComponent implements OnInit {
   {
     return this.repository.getAssignies();
   }
+
+  setIncident(incident: Incidents) {
+    this.incident = incident;
+    console.log(incident);
+
+
+      this.router.navigate(['/createInc'], { queryParams: { page: incident.id } });
+    
+  
+    }
 
   changeAssigne(newAssigne: string): string
   {

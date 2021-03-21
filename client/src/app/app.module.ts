@@ -9,6 +9,7 @@ import { FooterComponent } from './partials/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BasePageComponent } from './partials/base-page/base-page.component';
 import { CreateIncidentComponent } from './pages/create-incident/create-incident.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,8 @@ import { CreateIncidentComponent } from './pages/create-incident/create-incident
   imports: [
     BrowserModule,
     AppRoutingModule,
-    IncidentDashboardModule
+    IncidentDashboardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,8 +28,8 @@
                 <h8>Customer: {{incident.customerInfo}}</h8>
                 <h8>Assigned Date: {{incident.date}}</h8>
                 <div>
-                    <button class="btn   btn-success  col-2 float-right">
-                        <a  href="/editInc" role="button"> Edit</a>
+                    <button class="btn   btn-success  col-2 float-right"
+                        (click)='setIncident(incident)'> Edit
                     </button>
                     <button class="btn   btn-danger col-2 float-right">
                         <a  href="/createInc" role="button"> Delete</a>
