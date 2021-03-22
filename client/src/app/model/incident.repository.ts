@@ -27,6 +27,7 @@ export class IncidentRepository {
   editIncident(incident: Incidents) {
     this.incidents.concat(incident);
   }
+  
   deleteIncident(incident: Incidents) {
     console.log("delete");
     const index: number = this.incidents.indexOf(incident);
