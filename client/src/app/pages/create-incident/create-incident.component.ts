@@ -17,6 +17,7 @@ export class CreateIncidentComponent implements OnInit {
   public title:String;
   public id:number;
 
+
   constructor(private repository: IncidentRepository,private route: ActivatedRoute,
     private router: Router) {
   
@@ -28,6 +29,7 @@ export class CreateIncidentComponent implements OnInit {
       .subscribe(params => {
         // Defaults to 0 if no query param provided.
         this.id = +params['page'] || 0;
+        this.title = this.route.snapshot.data['title'];
         console.log(this.id);
         this.setIncident(this.repository.getIncident(this.id));
       });
@@ -41,19 +43,20 @@ export class CreateIncidentComponent implements OnInit {
   console.log(this.incident.status);
 
   }
-
-  addIncident(incident: Incidents) {
-    this.incident = incident;
-    console.log(incident);
-    this.repository.addIncident(incident);
-
-
-
-      this.router.navigate(['/incidents'], { queryParams: { page: incident.id } });
+  
+    onClickSubmit(incident) {
+      this.incident = incident;
+      console.log(incident);
+      this.repository.addIncident(incident);
+      this.router.navigate(['/incidents']);
+      }
+  
+  
+  
+        
+      
     
-  
-    }
-  
+      
   
 
 }

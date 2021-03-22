@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { IncidentDashboardModule } from './incident-dashboard/incident-dashboard.module';
@@ -10,7 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { BasePageComponent } from './partials/base-page/base-page.component';
 import { CreateIncidentComponent } from './pages/create-incident/create-incident.component';
 import { FormsModule } from '@angular/forms';
-
+import { EditIncidentComponent } from './pages/edit-incident/edit-incident.component';
 
 
 @NgModule({
@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     BasePageComponent,
     CreateIncidentComponent,
+    EditIncidentComponent
 
   ],
   imports: [
@@ -29,7 +30,7 @@ import { FormsModule } from '@angular/forms';
     IncidentDashboardModule,
     FormsModule
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

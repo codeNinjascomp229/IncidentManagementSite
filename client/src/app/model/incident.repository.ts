@@ -22,6 +22,9 @@ export class IncidentRepository {
     return this.incidents.find(i => i.id === id);
   }
   addIncident(incident: Incidents) {
+    this.incidents.push(incident);
+  }
+  editIncident(incident: Incidents) {
     this.incidents.concat(incident);
   }
   deleteIncident(incident: Incidents) {
