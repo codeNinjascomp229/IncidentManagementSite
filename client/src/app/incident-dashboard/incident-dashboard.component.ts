@@ -3,6 +3,7 @@ import { Incidents } from '../model/incident.model';
 import { IncidentRepository } from './../model/incident.repository';
 import { RouterModule, Routes } from '@angular/router';
 import { Router } from '@angular/router'; 
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-incident-dashboard',
   templateUrl: './incident-dashboard.component.html',
@@ -14,10 +15,13 @@ export class IncidentDashboardComponent implements OnInit {
   public  incidentsPerPage = 5;
   public selectedPage = 1;
   incident?: Incidents;
-  constructor(private repository: IncidentRepository,private router: Router) { }
+  constructor(private repository: IncidentRepository,private router: Router,private titleService : Title) { }
 
   ngOnInit(): void {
+    
   }
+
+
 
   get incidents(): Incidents[]
   {
