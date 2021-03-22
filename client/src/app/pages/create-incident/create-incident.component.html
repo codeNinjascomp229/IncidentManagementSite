@@ -1,0 +1,125 @@
+<!-- Content for the Add page -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1 class="display-4">{{title}}</h1>
+
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="nameTextField">Id:</label>
+                    <input type="text" class="form-control"
+                    id="nameTextField"
+                    placeholder="Enter the Id number"
+                    name="id" [(ngModel)]="incident.id" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="authorTextField">Incident No:</label>
+                    <input type="text" class="form-control"
+                    id="authorTextField"
+                    placeholder="Incident Number"
+                    [(ngModel)]="incident.incidentNo"
+                    name="incidentNo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="publishedTextField">Priority:</label>
+                    <input type="text" class="form-control"
+                    id="publishedTextField"
+                    placeholder="Priority Level"
+                    [(ngModel)]="incident.priority"
+                    name="priority" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descriptionTextArea">Description:</label>
+                    <textarea type="text" class="form-control"
+                    id="descriptionTextArea"
+                    placeholder="Enter a brief description about the Incident"
+                    name="description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="priceTextField">Narration:</label>
+                    <input type="text" class="form-control"
+                    id="priceTextField"
+                    placeholder="Narrate the incident"
+                    [(ngModel)]="incident.narration"
+                    name="narration" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="priceTextField">Customer Name:</label>
+                    <input type="text" class="form-control"
+                    id="priceTextField"
+                    placeholder="Customer info"
+                    [(ngModel)]="incident.customerInfo"
+                    name="customerInfo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="priceTextField">Status:</label>
+                    <input type="text" class="form-control"
+                    id="priceTextField"
+                    placeholder="Current Status"
+                    [(ngModel)]="incident.status"
+                    name="status" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="priceTextField">Date of Entry:</label>
+                    <input type="text" class="form-control"
+                    id="priceTextField"
+                    placeholder="Enter the Date"
+                    [(ngModel)]="incident.date"
+                    name="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="priceTextField">Duration for the Incident:</label>
+                    <input type="text" class="form-control"
+                    id="priceTextField"
+                    placeholder="Time taken in minutes"
+                    [(ngModel)]="incident.duration"
+                    name="duration" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="priceTextField">Comments:</label>
+                    <input type="text" class="form-control"
+                    id="priceTextField"
+                    placeholder="Leave your comments"
+                    [(ngModel)]="incident.comment"
+                    name="comment" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="priceTextField">Assigned Person:</label>
+                    <input type="text" class="form-control"
+                    id="priceTextField"
+                    placeholder="Person In-charge"
+                    [(ngModel)]="incident.assigne"
+                    name="assigne" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="priceTextField">Resolution:</label>
+                    <input type="text" class="form-control"
+                    id="priceTextField"
+                    placeholder="Final Line about the incident"
+                    [(ngModel)]="incident.resolution"
+                    name="resolution" required>
+                </div>
+                
+
+                <button class="btn btn-primary" type="submit"   (click)='addIncident(incident)'>
+                    <i class="fas fa-edit"></i> Submit</button>
+                
+                    <a href="/incidents" class="btn btn-warning">
+                        <i class="fas fa-undo"></i> Cancel</a>
+
+            </form>
+        </div>
+
+    </div>
+</div>

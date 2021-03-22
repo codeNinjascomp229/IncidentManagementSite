@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-2 p-2">
+
+            <button class="btn btn-outline-dark btn-block bg-dark">
+                <a  href="/createInc" role="button">Create New Incident</a>
+            </button>
+
+            <button *ngFor= 'let assigne of assignies'
+                   class="btn btn-outline-primary btn-block"
+                   [class.active] = 'assigne == selectedAssigne' (click)= 'changeAssigne(assigne)'>
+
+                   {{assigne}}
+            </button>
+        </div>
+        <div class="col-10 bg-light p-2">
+            <div *ngFor= 'let incident of incidents' class="card m-1 p-1 bg-light">
+                <h4>
+                    Id: {{incident.id}}
+                    <span class="badge badge-pill badge-primary float-right">
+                        {{incident.status}}                    
+                    </span>
+                </h4>
+
+                
+                <h6>Incident No: {{incident.incidentNo}}</h6>
+                <h8>Assigne: {{incident.assigne}}</h8>
+                <h8>Customer: {{incident.customerInfo}}</h8>
+                <h8>Assigned Date: {{incident.date}}</h8>
+                <div class ="p-1" >
+                    <button class="btn  badge badge-pill btn-success mr-2  col-2 "
+                        (click)='setIncident(incident)'> Edit
+                    </button>
+                    <button class="btn  badge badge-pill btn-danger col-2 float-right" (click)='deleteIncident(incident)'> 
+                        Delete
+                    </button>
+
+                </div>
+                
+                <div class="card-text bg-dark p-1 text-light">{{incident.narration}}</div>
+                
+                
+            </div>
+
+        </div>
+    </div>
+</div>
