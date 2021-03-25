@@ -1,7 +1,7 @@
 <!-- Main Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:black">
   <a class="navbar-brand" href="/home"><img src="../assets/img/teamlogo.png" alt=""
-      style="width: 70px;height: 35px;" />Code Ninjas</a>
+      style="width: 70px;height: 35px; margin-left: 150px; background-color: white;" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -11,18 +11,12 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active"></li>
 
-         <li class="nav-item ">
-            <a class="nav-link" style="font-weight:bold" data-target=".navbar-collapse.in"
-            href="#"><i class="fas fa-sign-in-alt"></i> Login
-            </a>
-         </li>
-
         <li class="nav-item ">             
           <a class="nav-link btn btn-primary btn-md active" href="/createInc" role="button" data-target=".navbar-collapse.in"><i class="fas fa-plus"></i> Create</a>             
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/home"><i class="fas fa-lg fa-laptop-house"></i> Home </a>
+          <a class="nav-link" href="/home"><i class="fas fa-home"></i> Home </a>
         </li>
 
         <li class="nav-item">
@@ -38,6 +32,12 @@
             href="#"><i class="fas fa-phone-square-alt"></i> Apps
           </a>
         </li> 
+        <li class="nav-item">
+          <a href="/register" class="nav-link"  style="font-weight:bold" data-target=".navbar-collapse.in" routerLink="register"><i class="fas fa-user-plus"></i>Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link"  style="font-weight:bold" data-target=".navbar-collapse.in" routerLink="login"><i class="fas fa-sign-in-alt"></i>Login</a>
+        </li>
       
     </ul>
 

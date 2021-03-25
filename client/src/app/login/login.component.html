@@ -1,0 +1,72 @@
+<div class="col-md-12" style="margin-top: 120px;">
+    
+    <div class="card card-container">
+        <h2 class="text-center">Login</h2>
+      <img
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="profile-img-card"
+      />
+
+      <form    
+        name="form"
+        novalidate #form="ngForm" (ngSubmit)="authenticate(form)"
+      >
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            [(ngModel)]="username"
+            required
+          />
+          <!-- <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="form.submitted && username.invalid"
+        >
+          Username is required!
+        </div> -->
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="password"
+            required
+          />
+          <!-- <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="form.submitted && password.invalid"
+        >
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </div> -->
+        </div>
+        <div class="form-group">
+            <div class="text-center">
+                <button class="btn btn-secondary m-1" routerLink="/">Go back</button
+                ><button class="btn btn-primary m-1" type="submit">Log In</button>
+              </div>
+        </div>
+         <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf=" form.submitted && errorMessage != null"
+          >
+            Login failed: {{ errorMessage }}
+          </div>
+        </div> 
+      </form>
+  
+     
+    </div>
+  </div>
+  
