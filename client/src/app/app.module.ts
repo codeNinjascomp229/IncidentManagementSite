@@ -11,6 +11,7 @@ import { BasePageComponent } from './partials/base-page/base-page.component';
 import { CreateIncidentComponent } from './pages/create-incident/create-incident.component';
 import { FormsModule } from '@angular/forms';
 import { EditIncidentComponent } from './pages/edit-incident/edit-incident.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { EditIncidentComponent } from './pages/edit-incident/edit-incident.compo
     HomeComponent,
     BasePageComponent,
     CreateIncidentComponent,
-    EditIncidentComponent
+    EditIncidentComponent,
+    LoginComponent
 
   ],
   imports: [
