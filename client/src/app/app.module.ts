@@ -12,6 +12,7 @@ import { CreateIncidentComponent } from './pages/create-incident/create-incident
 import { FormsModule } from '@angular/forms';
 import { EditIncidentComponent } from './pages/edit-incident/edit-incident.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 
 
@@ -25,6 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
     CreateIncidentComponent,
     EditIncidentComponent,
     LoginComponent,
+    RegisterComponent,
     ProfileComponent
 
   ],
