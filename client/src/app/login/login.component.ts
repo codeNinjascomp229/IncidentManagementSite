@@ -12,9 +12,12 @@ export class LoginComponent {
   authenticate(form: NgForm) {
     if (form.valid) {// perform authentication
       this.auth.authenticate(this.username, this.password).subscribe(response => {
-        if (response) {this.router.navigateByUrl("/incidents");}
+        if (response) {
+        sessionStorage.setItem('username',this.username);
+        this.router.navigateByUrl("/incidents");}
         this.errorMessage = "Authentication Failed";
       })
     } else {
       this.errorMessage = "Form Data Invalid";
-    }}}
+    }}
+  }

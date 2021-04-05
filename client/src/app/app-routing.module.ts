@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { EditIncidentComponent } from './pages/edit-incident/edit-incident.component';
 import { LoginComponent } from './login/login.component';
 import {AuthGuard} from './login/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
 
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'createInc', component: CreateIncidentComponent, data: {title: 'Create Incidents'}},
   {path: 'editInc', component: EditIncidentComponent, data: {title: 'Edit Incident'}},
   {path: 'login', component: LoginComponent},
+  {path: 'profile', component: ProfileComponent, canActivate :[AuthGuard]},
   {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
