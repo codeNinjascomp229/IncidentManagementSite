@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { EditIncidentComponent } from './pages/edit-incident/edit-incident.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RegisterComponent } from './register/register.component';
     CreateIncidentComponent,
     EditIncidentComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
 
   ],
   imports: [

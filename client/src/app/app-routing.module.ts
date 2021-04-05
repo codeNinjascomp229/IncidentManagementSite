@@ -8,6 +8,7 @@ import { EditIncidentComponent } from './pages/edit-incident/edit-incident.compo
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component'
 import {AuthGuard} from './login/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
 
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'editInc', component: EditIncidentComponent, data: {title: 'Edit Incident'}},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent, data:{title: 'Register'}},
+  {path: 'profile', component: ProfileComponent, canActivate :[AuthGuard]},
   {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
