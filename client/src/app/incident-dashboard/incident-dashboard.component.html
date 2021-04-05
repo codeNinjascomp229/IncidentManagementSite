@@ -1,5 +1,11 @@
 <div class="container-fluid" style="margin-top: 70px;">
+    <div class="col-2 p-2 float-right">
+        <li *ngIf="isLoggedIn" (click)="logout()" >
+            <a href="/logout" class="nav-link"  style="color: #000" data-target=".navbar-collapse.in" routerLink="logout"><i class="fas fa-sign-in-alt"></i>Logout</a>
+          </li>
+        </div>
     <div class="row ">
+
         <div class="col-2 p-2">
 
             <button class="btn btn-outline-dark btn-block bg-dark">

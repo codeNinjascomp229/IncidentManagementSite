@@ -4,6 +4,7 @@ import { IncidentRepository } from './../model/incident.repository';
 import { RouterModule, Routes } from '@angular/router';
 import { Router } from '@angular/router'; 
 import { Title } from '@angular/platform-browser';
+import { AuthService } from "../model/auth.service";
 @Component({
   selector: 'app-incident-dashboard',
   templateUrl: './incident-dashboard.component.html',
@@ -14,10 +15,13 @@ export class IncidentDashboardComponent implements OnInit {
   public selectedAssigne = null ;
   public  incidentsPerPage = 5;
   public selectedPage = 1;
+  isLoggedIn : boolean;
   incident?: Incidents;
-  constructor(private repository: IncidentRepository,private router: Router,private titleService : Title) { }
+  constructor(private repository: IncidentRepository,private router: Router,private titleService : Title,private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.auth.authenticated;
+    console.log(this.auth.authenticated);
     
   }
 
@@ -75,5 +79,10 @@ export class IncidentDashboardComponent implements OnInit {
   {
     return Array(Math.ceil(this.repository.getIncidents(this.selectedAssigne).length / this.incidentsPerPage))
     .fill(0).map((x,i) => i+1);
+  }
+
+  logout() {
+    this.auth.clear();
+    this.router.navigate(['/login'], { queryParams: { page: 3 } });
   }
 }
