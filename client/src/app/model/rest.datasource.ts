@@ -28,7 +28,9 @@ export class RestDataSource
         return this.http.post<any>(this.baseUrl + "login", {
             name: user, password: pass
         }).pipe(map(response => {
+            console.log(response);
             this.auth_token = response.success ? response.token : null;
+            console.log(this.auth_token);
             return response.success;
         }
         ));
