@@ -14,7 +14,12 @@ import { EditIncidentComponent } from './pages/edit-incident/edit-incident.compo
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 
+export function jwtTokenGetter(): string
+{
+  return localStorage.getItem('id_token');
+}
 
 @NgModule({
   declarations: [
@@ -34,9 +39,17 @@ import { ProfileComponent } from './profile/profile.component';
     BrowserModule,
     AppRoutingModule,
     IncidentDashboardModule,
-    FormsModule
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: jwtTokenGetter,
+      }
+      
+    })
   ],
   providers: [Title],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}
