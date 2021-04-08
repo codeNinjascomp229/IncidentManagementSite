@@ -26,12 +26,12 @@ let userSchema = mongoose.Schema
       trim: true,
       required: 'email address is required'
     },
-    displayName: 
+    contactNumber: 
     {
       type: String,
       default: '',
       trim: true,
-      required: 'Display Name is required'
+      required: 'Contact Number is required'
     }
 },
   {

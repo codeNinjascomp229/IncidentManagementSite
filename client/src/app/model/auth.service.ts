@@ -35,4 +35,9 @@ export class AuthService {
   clear() {
     this.datasource.auth_token = null;
   }
+
+  registerUser(user: User): Observable<any>
+  {
+    return this.datasource.registerUser(user);
+  }
 }

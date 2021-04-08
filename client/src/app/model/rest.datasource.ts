@@ -84,6 +84,10 @@ export class RestDataSource
 
     return this.http.get<any>(this.baseUrl + 'logout', this.httpOptions);
   }
+
+  registerUser(user: User): Observable<any> {
+    return this.http.post<any>( this.baseUrl + 'register', user, this.httpOptions);
+  }
 }
 
 

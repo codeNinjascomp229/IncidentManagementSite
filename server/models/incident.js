@@ -2,11 +2,11 @@ let mongoose = require("mongoose");
  
 let incidentSchema = new mongoose.Schema(
   {
-    
+    id: String,
     incidentNo: Number,
     priority: String,
     description: String,
-    narrative: [String],
+    narration: [String],
     customerInfo: String,
     status: {type: String, default: "NEW"},
     date: {type: Date, default: Date.now },

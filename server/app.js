@@ -5,7 +5,7 @@ const express = require("express"),
   compress = require("compression"),
   session = require("express-session"),
   config = require("./server/config/env/development"),
-  indexRoutes = require("./server/routes/index"),
+  indexRoutes = require("./routes/index"),
   methodOverride = require('method-override'),
   passport = require('passport');
 
@@ -19,7 +19,7 @@ let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
   //database setup 
   let mongoose = require('mongoose');
-  let DB = require("./server/config/db");
+  let DB = require("./config/db");
 
   const app = express();
 
@@ -34,6 +34,8 @@ let localStrategy = passportLocal.Strategy;
       console.log('Connected to mongoDB...'); 
     });
 
+    let indexRouter = require('../routes/index');
+    let incidentsRouter = require('../routes/incidents');
 
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
@@ -66,9 +68,11 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/api', indexRouter);
+app.use('/api/incidents', incidentsRouter);
 
 //* create a User Model Instance
-let userModel = require('./server/models/user');
+let userModel = require('./models/user');
 let User = userModel.User;
 
 //* implement a User Authentication Strategy
