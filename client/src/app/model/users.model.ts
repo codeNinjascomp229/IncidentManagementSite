@@ -4,7 +4,7 @@ export class User
   username: string;
   password: string;
   email: string;
-  displayName: string;
+  contactNumber: string;
 
   constructor(
     public name?: string,

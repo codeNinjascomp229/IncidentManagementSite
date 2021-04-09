@@ -1,44 +1,55 @@
-<!-- Content for the Add page -->
-<div class="container-fluid" style="margin-top: 80px;">
+<!-- Content for the Register page -->
+<div class="container mb-5" style="margin-top: 80px;">
     <div class="row">
         <div class="offset-md-3 col-md-6">
-            <h1 class="display-4 text-center">Register New Account</h1>
+            <h1 class="display-8 text-center">Register New Account</h1>
 
             <form  class="form" method="POST" >
                 <div class="form-group">
-                    <label for="nameTextField">User Name:</label>
-                    <input type="text" class="form-control"
+                    <label for="username" >User Name:</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.username" name="username"
                     id="nameTextField"
                     placeholder="Enter a username">
                 </div>
 
                 <div class="form-group">
-                    <label for="publishedTextField">Email-ID:</label>
-                    <input type="text" class="form-control"
-                    id="publishedTextField"
+                    <label for="email" >Email-ID:</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.email" name="email" placeholder="Enter Email"
+                    autocomplete="off" #email="ngModel" required emailValidateDirective
+                    id="email"
                     placeholder="Enter your Email Id">
+                    <div *ngIf="email.invalid && email.dirty" class="invalid-feedback">
+                        <div *ngIf="email.errors.required">Email is required</div>
+                        <div *ngIf="email.errors.emailInvalid">Email must be a valid email address</div>
+                      </div>
+                    
                 </div>
 
             
                <div class="form-group">
-                  <label for="password">Enter new Password</label>
+                  <label for="password" >Password</label>
                    <input
                       type="password"
-                        class="form-control"
+                        class="form-control" [(ngModel)]="user.password"
                           name="password"
-                          placeholder="Enter a new Password">
+                          placeholder="Enter a new Password"
+                          #password="ngModel">
+                          <div *ngIf="password.invalid && password.dirty" class="invalid-feedback">
+                            <div *ngIf="password.errors.required">Password is required</div>
+                            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                          </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="priceTextField">Confirm New Password:</label>
-                    <input type="password" class="form-control"
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.contactNumber" name="contactNumber"
                     id="priceTextField"
-                    placeholder="Confirm the new password">
+                    placeholder="Contact Number">
                 </div>
                 
 
                 <button class="btn btn-primary" routerLink="/login">
-                    <i class="fas fa-edit"></i> Submit</button>
+                    <i class="fas fa-edit"></i> Register</button>
                 
                     <a href="/login" class="btn btn-warning">
                         <i class="fas fa-undo"></i> Cancel</a>

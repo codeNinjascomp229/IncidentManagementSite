@@ -7,7 +7,7 @@ let jwt = require('jsonwebtoken');
 let DB = require('../config/db');
 
 let userModel = require("../models/user");
-let User = userModel.User; 
+let User = userModel.User;
 const APP_SECRET = "myappsecret";
 const USERNAME = "admin";
 const PASSWORD = "secret";
@@ -19,37 +19,29 @@ module.exports.displayHomePage = (req, res, next) => {
   res.render("content/home");
 };
 
-module.exports.processLoginPage = function (req, res, next)
-{
+module.exports.processLoginPage = function (req, res, next) {
 
-  if (req.url.endsWith("/login") && req.method == "POST")
-  {
-    if (req.body && req.body.name == USERNAME && req.body.password == PASSWORD)
-    {
+  if (req.url.endsWith("/login") && req.method == "POST") {
+    if (req.body && req.body.name == USERNAME && req.body.password == PASSWORD) {
       let token = jwt.sign({ data: USERNAME, expiresIn: "1h" }, APP_SECRET);
       res.json({ success: true, token: token });
     }
-    else
-    {
+    else {
       res.json({ success: false });
     }
     res.end();
     return;
   }
-  else if (requiresAuth(req.method, req.url))
-  {
+  else if (requiresAuth(req.method, req.url)) {
     let token = req.headers["authorization"] || "";
-    if (token.startsWith("Bearer<"))
-    {
+    if (token.startsWith("Bearer<")) {
       token = token.substring(7, token.length - 1);
-      try
-      {
+      try {
         jwt.verify(token, APP_SECRET);
         next();
         return;
       }
-      catch (err)
-      { }
+      catch (err) { }
     }
     res.statusCode = 401;
     res.end();
@@ -58,18 +50,40 @@ module.exports.processLoginPage = function (req, res, next)
   next();
 }
 
-function requiresAuth(method, url)
-{
+function requiresAuth(method, url) {
   return (mappings[method.toLowerCase()] || [])
     .find(p => url.startsWith(p)) !== undefined;
 }
 
+module.exports.processRegisterPage = (req, res, next) => {
+  // define a new user object
+  let newUser = new User({
+    username: req.body.username,
+    //password: req.body.password
+    email: req.body.email,
+    contactNumber: req.body.contactNumber
+  });
+
+  User.register(newUser, req.body.password, (err) => {
+    if (err) {
+      if (err.name == "UserExistsError") {
+        //return res.json({success: false, msg: 'Username taken, please choose another username.'});
+      }
+      return res.json({ success: false, msg: 'Error: failed to create user.' });
+    } else {
+      // if no error exists, then registration is successful
+      return res.json({ success: true, msg: 'User Registered Successfully!' });
+      
+    }
+  });
+};
+
 module.exports.performLogout = (req, res, next) => {
   req.logout();
-  res.json({success: true, msg: 'User Successfully Logged out!'});
+  res.json({ success: true, msg: 'User Successfully Logged out!' });
 };
 
 //display error page
 module.exports.displayErrorPage = (req, res) => {
-    res.render("errors/404", { title: "Error" });
-  };
+  res.render("errors/404", { title: "Error" });
+};

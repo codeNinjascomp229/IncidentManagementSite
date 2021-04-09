@@ -26,13 +26,19 @@ let userSchema = mongoose.Schema
       trim: true,
       required: 'email address is required'
     },
-    displayName: 
+    contactNumber: 
     {
       type: String,
       default: '',
       trim: true,
-      required: 'Display Name is required'
-    }
+      required: 'contact Number is required'
+    },
+
+    created: 
+    {
+      type: Date,
+      default: Date.now
+    },
 },
   {
     collection: "users"
