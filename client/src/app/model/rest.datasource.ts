@@ -36,17 +36,20 @@ export class RestDataSource
         return this.http.get<Incidents[]>(this.baseUrl + 'incidents');
     }
 
-     authenticate(user: User): Observable<boolean> {
-        return this.http.post<any>(this.baseUrl + "login", {
-            name: user.username, password: user.password
-        }).pipe(map(response => {
-            console.log(response);
-            this.auth_token = response.success ? response.token : null;
-            console.log(this.auth_token);
-            console.log(response.username);
-            return response.success;
-        }
-        ));
+     authenticate(user: User): Observable<any> {
+      return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
+
+      
+        // return this.http.post<any>(this.baseUrl + "login", {
+        //     name: user.username, password: user.password
+        // }).pipe(map(response => {
+        //     console.log(response);
+        //     this.auth_token = response.success ? response.token : null;
+        //     console.log(this.auth_token);
+        //     console.log(response.username);
+        //     return response.success;
+        // }
+        // ));
     } 
      
    /*  authenticate(user: User): Observable<any>

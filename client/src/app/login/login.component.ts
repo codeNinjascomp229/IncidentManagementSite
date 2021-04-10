@@ -14,8 +14,9 @@ export class LoginComponent {
     var user = new User(this.username,this.password);
     if (form.valid) {// perform authentication
       this.auth.authenticate(user).subscribe(response => {
-        if (response) {
-        sessionStorage.setItem('username',this.username);
+        if (response.success) {
+        //sessionStorage.setItem('username',this.username);
+        this.auth.storeUserDate(response.token, response.user);
         this.router.navigateByUrl("/incidents");}
       })
     } else {
