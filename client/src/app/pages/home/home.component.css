@@ -1,0 +1,170 @@
+ /* styles.css   Olivia Thomas  (301146636)  03-02-2021 */ 
+ body,
+ html {
+   margin: 0;
+   padding: 0;
+   font-family: "Nunito", sans-serif !important;
+   scroll-behavior: smooth;
+ }
+ 
+ 
+ 
+ .heading {
+   padding-top: 25px;
+   font-family: "Roboto Slab", serif;
+   font-size: 2rem;
+   text-align: center;
+   margin: 2rem 0;
+ }
+ 
+ #homesec {
+   width: auto;
+   height: 100vh;
+   overflow: hidden;
+ }
+ #home {
+   width: 80vw;
+   color: black;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   position: absolute;
+   text-align: center;
+ }
+ 
+ .home-title {
+   font-family: "Roboto Slab", serif;
+   font-size: 2.5rem;
+ }
+ 
+ .home-text {
+   margin-top: 1.5rem;
+   font-size: 1.1rem;
+ }
+ 
+ .home-icons {
+   color: white;
+   padding: 20px;
+ }
+ 
+ .links {
+   margin-top: 1.5rem;
+   margin-bottom: 1.5rem;
+ }
+ 
+ .homebtn {
+   margin: 0.5rem;
+ }
+ 
+ .videobg {
+   z-index: -1;
+   width: 100vw;
+ }
+ 
+ @media (min-aspect-ratio: 16/9) {
+   .videobg {
+     width: 100vw;
+     height: auto;
+   }
+ }
+ 
+ @media (max-aspect-ratio: 16/9) {
+   .videobg {
+     height: 100vh;
+     width: auto;
+   }
+ }
+ 
+ #container {
+   padding: 1rem 6rem;
+ }
+ .bg-sec {
+   background-color: #fafafa;
+ }
+ #about,
+ #proj {
+   padding-top: 55px;
+   margin-top: -55px;
+ }
+ .projects-btn {
+   margin-top: 1rem;
+   text-align: center;
+ }
+ 
+ .overlink:hover {
+   background-color: yellow;
+ }
+ 
+ 
+ .submitbtn {
+   margin-top: 2rem;
+   height: 3.5rem;
+   font-weight: bold;
+ }
+ .social {
+   list-style: none;
+   
+   text-align: left;
+ }
+ ul.social li{
+  margin-bottom: 1em; 
+ }
+ .social a {
+   color: #90caf9;
+   text-decoration: none;
+ }
+ .social a:hover {
+   color: #ffffff;
+ }
+ .mapheading {
+   display: block;
+ }
+ .social-footer {
+   position: relative;
+ }
+ 
+ 
+ 
+ #title {
+   margin-left: 3%;
+ }
+ 
+ 
+ 
+ .stuff {
+   display: inline-block;
+   margin-top: 6px;
+   margin-left: 55px;
+   width: 75%;
+   height: 1000px;
+ }
+ 
+ 
+ 
+ .head {
+   font-size: 20px;
+   
+ }
+ 
+ #name {
+   
+   float: right;
+   margin-top: 10px;
+   margin-right: 4%;
+ }
+ 
+ .bottomnav{
+   text-align: center;
+   position: absolute; 
+   float: bottom;
+   bottom: 0px; 
+ }
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
