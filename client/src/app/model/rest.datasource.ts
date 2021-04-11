@@ -48,18 +48,8 @@ export class RestDataSource
         }
         ));
     } 
-     
-   /*  authenticate(user: User): Observable<any>
-    {
-      return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
-    }
-     */
-    register(user:User) {
-        return this.http.post<any>(this.baseUrl + "register", {name: user.username, password: user.password}).pipe(tap(res => {
-        this.authenticate(user)
-    }))
-    }
-
+   
+ 
     
   storeUserData(token: any, user: User): void
   {
@@ -87,6 +77,11 @@ export class RestDataSource
 
   registerUser(user: User): Observable<any> {
     return this.http.post<any>( this.baseUrl + 'register', user, this.httpOptions);
+  }
+
+  addIncident(incidents: Incidents): Observable<any>{
+    //this.loadToken();
+    return this.http.post<any>(this.baseUrl + 'createInc', incidents, this.httpOptions);
   }
 }
 

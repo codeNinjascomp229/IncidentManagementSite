@@ -73,3 +73,25 @@ module.exports.performLogout = (req, res, next) => {
 module.exports.displayErrorPage = (req, res) => {
     res.render("errors/404", { title: "Error" });
   };
+
+  module.exports.processRegisterPage = (req, res, next) => {
+    // define a new user object
+    let newUser = new User({
+        username: req.body.username,
+        //password: req.body.password
+        email: req.body.email,
+        contactNumber: req.body.contactNumber
+    });
+
+    User.register(newUser, req.body.password, (err) => {
+        if (err) {
+            if (err.name == "UserExistsError") {  
+                //return res.json({success: false, msg: 'Username taken, please choose another username.'});
+            }
+            return res.json({success: false, msg: 'Error: failed to create user.'});
+        } else {
+        // if no error exists, then registration is successful
+        return res.json({success: true, msg: 'User Registered Successfully!'});
+        }
+    });
+};
