@@ -10,56 +10,14 @@ module.exports.getIncidents = (req, res, next) => {
         if(err){
             console.error(err);
             res.end(err);
-        } else {
-            const filteredincidents = incidents.filter(incidents => incidents.id);
+        } 
+        else{
 
-            filteredincidents.forEach((incidents, i) => {
-
-                const promise = User.findById({"_id": incidents.id}, (err, foundUser) => {
-                    if(err) {
-                        console.error(err);
-                    }
-                }).exec();
-
-                promises.push(promise);
-            })
-
-            Promise.all(promises).then((values) => {
-                let incidentsToReturn = [];
-                filteredincidents.forEach((incidents, index) => {
-                    incidentsToReturn.push({
-                        ...incidents._doc,
-                        displayName: values[index].displayName
-                    });
-                })
-
-                incidentsToReturn.sort((a, b) => (a._id < b._id) ? 1 : -1);
-
-                res.json({
-                    error: err,
-                    data: incidentsToReturn
-                });
-            })
-
+            res.render('/incidents', {title: 'Incidents', Incidents: Incidents});
         }
     });
 };
 
-module.exports.getIncident = (req, res, next) => {
-    let id = req.params.id
-
-    Incidents.findById({_id: id}, (err, foundIncident) => {
-        if(err){
-            console.error(err);
-            res.end(err);
-        } else {
-            res.json({
-                error: err,
-                data: foundIncident
-            });
-        }
-    });
-};
 
 module.exports.addIncident = (req, res, next) => {
     let newIncident = Incidents({
@@ -74,7 +32,7 @@ module.exports.addIncident = (req, res, next) => {
         "duration": req.body.duration,
         "comment": req.body.comment,
         "assigne": req.body.assigne,
-        "resolution": req.body.assigne
+        "resolution": req.body.resolution
     });
 
     Incidents.create(newIncident, (err, incidents) => {
@@ -82,11 +40,9 @@ module.exports.addIncident = (req, res, next) => {
             console.error(err);
             res.end(err);
         }
-        else{
-            res.json({
-                error:err,
-                data: incidents
-            });
+        else 
+        {
+            res.redirect('/incidents');
         }
     });
 }

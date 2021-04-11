@@ -4,7 +4,7 @@ const incidentController = require('../controllers/incidents');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
-router.get('/', incidentController.getIncidents);
+router.get('/incidents', incidentController.getIncidents);
 
 //POST add Incidents
 router.post('/createInc', passport.authenticate('jwt', {session: false}), incidentController.addIncident);

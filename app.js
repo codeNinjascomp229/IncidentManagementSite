@@ -1,42 +1,46 @@
-/* Main Entry : app.js  Olivia Thomas  (301146636)  03-02-2021 */ 
-const express = require("express"),
-  bodyParser = require("body-parser"),
-  morgan = require("morgan"),
-  compress = require("compression"),
-  session = require("express-session"),
-  config = require("./server/config/env/development"),
-  indexRoutes = require("./routes/index"),
-  methodOverride = require('method-override'),
-  passport = require('passport');
+/* Main Entry : app.js  Olivia Thomas  (301146636)  03-02-2021 */
+let express = require("express"),
+bodyParser = require("body-parser"),
+morgan = require("morgan"),
+compress = require("compression"),
+session = require("express-session"),
+config = require("./server/config/env/development"),
+indexRoutes = require("./server/routes/index"),
+methodOverride = require('method-override'),
+passport = require('passport');
 
-  
-  let path = require('path');
-  let cors = require('cors');
-  let passportJWT = require('passport-jwt');
+
+
+let path = require('path');
+let cors = require('cors');
+let passportJWT = require('passport-jwt');
 let JWTStrategy = passportJWT.Strategy;
 let ExtractJWT = passportJWT.ExtractJwt;
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
-  //database setup 
-  let mongoose = require('mongoose');
-  let DB = require("./config/db");
 
-  const app = express();
 
-   //point mongoose to the DB URI 
-   mongoose.connect(process.env.MONGODB_URI || DB.URI, 
-   {useNewUrlParser: true,
+//database setup 
+let mongoose = require('mongoose');
+let DB = require("./server/config/db");
+
+const app = express();
+
+//point mongoose to the DB URI 
+mongoose.connect(process.env.MONGODB_URI || DB.URI,
+  {
+    useNewUrlParser: true,
     useUnifiedTopology: true
-  }); 
-   let mongoDB= mongoose.connection;
-    mongoDB.on('error', console.error.bind(console, 'Connection Error: ')); 
-    mongoDB.once('open',()=>{ 
-      console.log('Connected to mongoDB...'); 
-    });
+  });
+let mongoDB = mongoose.connection;
+mongoDB.on('error', console.error.bind(console, 'Connection Error: '));
+mongoDB.once('open', () => {
+  console.log('Connected to mongoDB...');
+});
 
-    let indexRouter = require('./server/routes/index');
-    let incidentsRouter = require('./server/routes/incidents');
-
+//let indexRouter = require('./server/routes/index');
+let incidentsRouter = require('./server/routes/incidents');
+let usersRouter = require('./server/routes/users');
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 let port = process.env.PORT;
@@ -57,6 +61,7 @@ app.use(cors());
 app.use(express.static("./public"));
 app.use(methodOverride("_method"));
 
+
 //Registering the middleware express-session
 app.use(
   session({
@@ -68,15 +73,20 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/api', indexRouter);
+
+//routing
+app.use('/api', indexRoutes);
 app.use('/api/incidents', incidentsRouter);
+app.use('/api/users', usersRouter);
 
 //* create a User Model Instance
-let userModel = require('./models/user');
+let userModel = require('./server/models/user');
 let User = userModel.User;
 
 //* implement a User Authentication Strategy
 passport.use(User.createStrategy());
+
+
 
 //* serialize and deserialize the User info
 passport.serializeUser(User.serializeUser());
@@ -99,13 +109,13 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 });
 
 passport.use(strategy); */
- 
 
 
 
 
 
-app.use(function isLoggedIn(req,res,next){
+
+app.use(function isLoggedIn(req, res, next) {
   res.locals.user = req.user;
   next();
 });
@@ -117,14 +127,16 @@ app.set("view engine", "ejs");
 app.use('/api', indexRoutes);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "client/src/index.html"));
-}); 
+});
 
 //Rerouting in case of non-existent routes
 app.use((req, res, next) => {
   res.status(404).redirect('/error');
- })
+})
 
- //Creates a Node.js web server at the specified port
+//Creates a Node.js web server at the specified port
 app.listen(port, () =>
   console.log(`Express portfolio app listening on port ${port}!`)
 );
+
+module.exports = app;
