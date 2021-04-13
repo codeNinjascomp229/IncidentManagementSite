@@ -16,7 +16,7 @@ let incidentSchema = new mongoose.Schema(
     resolution: String
 },
   {
-    collection: "incidents",
+    collection: "incident"
   }
 );
  

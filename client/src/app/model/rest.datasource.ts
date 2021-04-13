@@ -9,6 +9,11 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 const PROTOCOL = 'http';
 const PORT = 3500;
 
+export interface IResponse {
+  error: string | undefined | null;
+  data: any;
+}
+
 
 @Injectable()
 export class RestDataSource
@@ -31,9 +36,9 @@ export class RestDataSource
         this.baseUrl =`http://localhost:3002/api/`
     }
 
-    getIncidents(): Observable<Incidents[]>
+    getIncidents(): Observable<IResponse>
     {
-        return this.http.get<Incidents[]>(this.baseUrl + 'incidents');
+        return this.http.get<IResponse>(this.baseUrl + 'incidents');
     }
 
      authenticate(user: User): Observable<any> {

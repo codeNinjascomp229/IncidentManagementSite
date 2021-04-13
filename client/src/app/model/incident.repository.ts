@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Incidents } from './incident.model';
 import { StaticDataSource } from './static.datasource';
+import { RestDataSource } from './rest.datasource';
+import { User } from './users.model';
 
 @Injectable()
 export class IncidentRepository {
   private incidents: Incidents[] = [];
   private assignies: string[] = [];
-  constructor(private dataSource: StaticDataSource) {
+  constructor(private dataSource: RestDataSource) {
     dataSource.getIncidents().subscribe(data => {
-      this.incidents = data;
-      this.assignies = data.map(i => i.assigne)
+      this.incidents = data.data;
+      console.log(this.incidents);
+      this.assignies = this.incidents.map(i => i.assigne)
         .filter((c, index, array) => array.indexOf(c) === index).sort();
+    });
+  }
+  initializeData(): void {
+    this.dataSource.getIncidents().subscribe(data => {
+      this.incidents = data.data;
     });
   }
   getIncidents(assigne: string = null): Incidents[] {

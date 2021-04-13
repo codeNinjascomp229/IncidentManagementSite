@@ -12,9 +12,9 @@ module.exports.getIncidents = (req, res, next) => {
             console.error(err);
             res.end(err);
         }else{
-            res.render('/incidents', {
-                title: 'Incidents',
-                incidents: incidents
+            res.json({
+                error: err,
+                data: incidents
             })
         }
     });
