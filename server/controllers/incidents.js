@@ -37,6 +37,12 @@ module.exports.getIncident = (req, res, next) => {
 };
 
 module.exports.addIncident = (req, res, next) => {
+
+    // res.json({
+    //     error: null,
+    //     data: null
+    // });
+
     let newIncident = Incidents({
         "id": req.body.id,
         "incidentNo": req.body.incidentNo,
@@ -45,7 +51,7 @@ module.exports.addIncident = (req, res, next) => {
         "narration": req.body.narration,
         "customerInfo": req.body.narration,
         "status": req.body.status,
-        "date": req.body.date,
+        //"date": req.body.date,
         "duration": req.body.duration,
         "comment": req.body.comment,
         "assigne": req.body.assigne,

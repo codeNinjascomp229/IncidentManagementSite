@@ -7,6 +7,6 @@ const passport = require('passport');
 router.get('/', incidentController.getIncidents);
 
 //POST add Incidents
-router.post('/createInc', passport.authenticate('jwt', {session: false}), incidentController.addIncident);
+router.post('/createInc', incidentController.addIncident);
 
 module.exports = router;
