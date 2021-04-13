@@ -45,7 +45,7 @@ let usersRouter = require('./server/routes/users');
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+  port = 3002;
 }
 
 app.use(bodyParser.urlencoded({ extended: true }));
