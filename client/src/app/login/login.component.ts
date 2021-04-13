@@ -18,6 +18,7 @@ export class LoginComponent {
         if (response.success) {
           console.log(response.success);
         //sessionStorage.setItem('username',this.username);
+        sessionStorage.setItem('username',this.username);
         this.auth.storeUserDate(response.token, response.user);
         this.router.navigateByUrl("/incidents");}
       })
