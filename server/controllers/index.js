@@ -111,7 +111,7 @@ module.exports.processRegisterPage = (req, res, next) => {
   // define a new user object
   let newUser = new User({
     username: req.body.username,
-    //password: req.body.password
+    password: req.body.password,
     email: req.body.email,
     contactNumber: req.body.contactNumber
   });

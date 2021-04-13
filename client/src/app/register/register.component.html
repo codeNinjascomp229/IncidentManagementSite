@@ -4,7 +4,7 @@
         <div class="offset-md-3 col-md-6">
             <h1 class="display-8 text-center">Register New Account</h1>
 
-            <form  class="form" method="POST" >
+            <form  class="form" (submit)="onRegisterSubmit()" #registerForm="ngForm"> 
                 <div class="form-group">
                     <label for="username" >User Name:</label>
                     <input type="text" class="form-control" [(ngModel)]="user.username" name="username"
@@ -46,10 +46,13 @@
                     id="priceTextField"
                     placeholder="Contact Number">
                 </div>
+                <button class='btn btn-primary m-1' type='submit' [disabled]="!registerForm.form.valid">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Register
+                  </button>
                 
 
-                <button class="btn btn-primary" routerLink="/login">
-                    <i class="fas fa-edit"></i> Register</button>
+
                 
                     <a href="/login" class="btn btn-warning">
                         <i class="fas fa-undo"></i> Cancel</a>
