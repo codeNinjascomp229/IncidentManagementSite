@@ -40,13 +40,13 @@ export class CreateIncidentComponent implements OnInit {
 
   setIncident(incident: Incidents) {
   this.incident = incident;
-  console.log(this.incident.status);
+  console.log(this.incident);
 
   }
   
     onClickSubmit(incident) {
       this.incident = incident;
-      console.log(incident);
+      //console.log(incident);
       this.repository.addIncident(incident);
       this.router.navigate(['/incidents']);
       }

@@ -41,6 +41,25 @@ export class RestDataSource
         return this.http.get<IResponse>(this.baseUrl + 'incidents');
     }
 
+    addIncident(incident: Incidents): Observable<IResponse>
+  {
+    this.loadToken();
+    console.log("addIncident");
+    return this.http.post<IResponse>(this.baseUrl + 'incidents/createInc', incident, this.httpOptions);
+  }
+
+  deleteIncident(data: any): Observable<IResponse>
+  {
+    this.loadToken();
+    return this.http.post<IResponse>(this.baseUrl + `incidents/delete`, data, this.httpOptions);
+  }
+
+  updateIncident(data: any): Observable<IResponse>
+  {
+    this.loadToken();
+    return this.http.post<IResponse>(this.baseUrl + `incidents/update/${data.incident._id}`, data, this.httpOptions);
+  }
+
      authenticate(user: User): Observable<any> {
       return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
 
@@ -69,6 +88,13 @@ export class RestDataSource
     }
 
     
+      // updates the headers with the bearer token
+  private loadToken(): void
+  {
+    const token = localStorage.getItem('id_token');
+    this.auth_token = token;
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', this.auth_token);
+  }
   storeUserData(token: any, user: User): void
   {
     localStorage.setItem('id_token', 'Bearer ' + token);

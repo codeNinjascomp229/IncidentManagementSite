@@ -30,7 +30,21 @@ export class IncidentRepository {
     return this.incidents.find(i => i.id === id);
   }
   addIncident(incident: Incidents) {
-    this.incidents.push(incident);
+    console.log("repo data 1");
+    
+    this.dataSource.addIncident(incident).subscribe(data => {
+      console.log("repo data");
+      console.log(data);
+      const incidentA = data.data as Incidents;
+      const error = data.error;
+
+      if (error) {
+        
+      } else if (incidentA) {
+        this.initializeData(); 
+        // this.router.navigateByUrl('/incidents/edit/' + addedSurvey._id);
+      }
+    });
   }
   editIncident(incident: Incidents) {
     this.incidents.concat(incident);
