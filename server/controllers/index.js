@@ -19,41 +19,93 @@ module.exports.displayHomePage = (req, res, next) => {
   res.render("content/home");
 };
 
-module.exports.processLoginPage = function (req, res, next) {
-
-  if (req.url.endsWith("/login") && req.method == "POST") {
-    if (req.body && req.body.name == USERNAME && req.body.password == PASSWORD) {
-      let token = jwt.sign({ data: USERNAME, expiresIn: "1h" }, APP_SECRET);
-      res.json({ success: true, token: token });
-    }
-    else {
-      res.json({ success: false });
-    }
-    res.end();
-    return;
-  }
-  else if (requiresAuth(req.method, req.url)) {
-    let token = req.headers["authorization"] || "";
-    if (token.startsWith("Bearer<")) {
-      token = token.substring(7, token.length - 1);
-      try {
-        jwt.verify(token, APP_SECRET);
-        next();
-        return;
+// * controller for processing Login page
+module.exports.processLoginPage = (req,res, next) =>{
+    // define a new user object
+    
+  
+  passport.authenticate('local',
+  (err, user, info) => {
+      // server err?
+      if(err)
+      {
+          return next(err);
       }
-      catch (err) { }
-    }
-    res.statusCode = 401;
-    res.end();
-    return;
-  }
-  next();
+      //is there a user login error?
+      if(!user)
+      {
+          return res.json({success: false, msg: 'Error: Failed to log in user!'});
+      }
+
+      req.login(user, (err) => {
+          // server error?
+          if(err)
+          {
+              return next(err);
+          }
+
+          const payload = 
+          {
+              id: user._id,
+              displayName: user.displayName,
+              username: user.username,
+              email: user.email
+          }
+
+          const authToken = jwt.sign(payload, DB.Secret, {
+              expiresIn: 604800 // 1 week
+          });
+          
+          return res.json({success: true, msg: 'User Logged in Successfully!', user: {
+              id: user._id,
+              displayName: user.displayName,
+              username: user.username,
+              email: user.email
+          }, token: authToken});
+
+      });
+  })(req, res, next);
 }
+
+
+
+// module.exports.processLoginPage = function (req, res, next) {
+
+//   if (req.url.endsWith("/login") && req.method == "POST") {
+//     if (req.body && req.body.name == USERNAME && req.body.password == PASSWORD) {
+//       let token = jwt.sign({ data: USERNAME, expiresIn: "1h" }, APP_SECRET);
+//       res.json({ success: true, token: token });
+//     }
+//     else {
+//       res.json({ success: false });
+//     }
+//     res.end();
+//     return;
+//   }
+//   else if (requiresAuth(req.method, req.url)) {
+//     let token = req.headers["authorization"] || "";
+//     if (token.startsWith("Bearer<")) {
+//       token = token.substring(7, token.length - 1);
+//       try {
+//         jwt.verify(token, APP_SECRET);
+//         next();
+//         return;
+//       }
+//       catch (err) { }
+//     }
+//     res.statusCode = 401;
+//     res.end();
+//     return;
+//   }
+//   next();
+// }
 
 function requiresAuth(method, url) {
   return (mappings[method.toLowerCase()] || [])
     .find(p => url.startsWith(p)) !== undefined;
 }
+
+
 
 module.exports.processRegisterPage = (req, res, next) => {
   // define a new user object

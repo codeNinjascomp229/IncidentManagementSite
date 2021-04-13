@@ -14,7 +14,9 @@ export class LoginComponent {
     var user = new User(this.username,this.password);
     if (form.valid) {// perform authentication
       this.auth.authenticate(user).subscribe(response => {
+        console.log(response);
         if (response.success) {
+          console.log(response.success);
         //sessionStorage.setItem('username',this.username);
         this.auth.storeUserDate(response.token, response.user);
         this.router.navigateByUrl("/incidents");}
